@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && tsc -p tsconfig.json --pretty",
-    "start": "npm run build && node dist/index.js"
+    "watch": "tsc -p tsconfig.json --pretty -w",
+    "start": "npm run build && node dist/index.js",
+    "start-dev": "concurrently \"nodemon dist/index.js\" \"npm run watch\""
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,8 @@
     "@types/dotenv": "^4.0.0",
     "@types/koa": "^2.0.39",
     "@types/node": "^8.0.14",
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0",
     "rimraf": "^2.6.1",
     "typescript": "^2.4.1"
   }

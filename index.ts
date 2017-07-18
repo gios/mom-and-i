@@ -5,7 +5,7 @@ const app = new Koa();
 dotenv.config();
 
 app.use(ctx => {
-  ctx.body = 'Hello Mom and I';
+  ctx.body = "Hello Mom and I";
 });
 
 console.info(`Application is running on port ${process.env.PORT}`);
