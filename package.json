@@ -1,0 +1,32 @@
+{
+  "name": "mom-and-i",
+  "version": "0.0.1",
+  "description": "Backend for mom-and-i",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && tsc -p tsconfig.json --pretty",
+    "start": "npm run build && node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gios/mom-and-i.git"
+  },
+  "author": "Gios",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gios/mom-and-i/issues"
+  },
+  "homepage": "https://github.com/gios/mom-and-i#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "koa": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^4.0.0",
+    "@types/koa": "^2.0.39",
+    "@types/node": "^8.0.14",
+    "rimraf": "^2.6.1",
+    "typescript": "^2.4.1"
+  }
+}
