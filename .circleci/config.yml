@@ -39,7 +39,8 @@ jobs:
 
       # run tests!
       - run: npm test
-      - run: chmod +x .circleci/setup-heroku.sh
+
+      # deploy to Heroku
       - run: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
@@ -47,6 +48,8 @@ jobs:
       - deploy:
           name: Deploy Master to Heroku
           command: |
-            git push heroku master
-            heroku run python manage.py deploy
-            heroku restart
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git push heroku master
+              heroku run python manage.py deploy
+              heroku restart
+            fi
