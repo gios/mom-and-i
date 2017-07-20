@@ -7,10 +7,10 @@ const app = new Koa();
 const router = new Router();
 dotenv.config();
 
-import { Categories } from "./categories/categories";
+// import { Categories } from "./categories/categories";
 
 router.get("/", async (ctx) => {
-  const categories = new Categories();
+  // const categories = new Categories();
   ctx.body = "zz";
 });
 
