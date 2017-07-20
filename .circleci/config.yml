@@ -38,10 +38,10 @@ jobs:
           command: npm run build
 
       - run:
-        name: Commit compiled TS files
-        command: |
-          git add -A
-          git commit -m "heroku deploy"
+          name: Commit compiled TS files
+          command: |
+            git add -A
+            git commit -m "heroku deploy"
 
       - run: npm test
 
