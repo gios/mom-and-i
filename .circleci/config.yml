@@ -40,6 +40,8 @@ jobs:
       - run:
           name: Commit compiled TS files
           command: |
+            git config user.name $GIT_NAME
+            git config user.email $GIT_EMAIL
             git add -A
             git commit -m "heroku deploy"
 
