@@ -37,7 +37,12 @@ jobs:
           name: Compile TypeScript
           command: npm run build
 
-      # run tests!
+      - run:
+        name: Commit compiled TS files
+        command: |
+          git add -A
+          git commit -m "heroku deploy"
+
       - run: npm test
 
       # deploy to Heroku
