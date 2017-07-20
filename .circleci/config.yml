@@ -38,6 +38,9 @@ jobs:
           command: npm run build
 
       - run:
+          command: ls -a
+
+      - run:
           name: Commit compiled TS files
           command: |
             git config user.name $GIT_NAME
