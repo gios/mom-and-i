@@ -33,5 +33,14 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run:
+          name: Compile TypeScript
+          command: npm run build
+
       # run tests!
       - run: npm test
+  deployment:
+    staging:
+      branch: master
+      heroku:
+        appname: mom-and-i
