@@ -11,7 +11,7 @@ import { Categories } from "./categories/categories";
 
 router.get("/", async (ctx) => {
   const categories = new Categories();
-  ctx.body = await categories.getAllCategories();
+  ctx.body = "zz";
 });
 
 app.use(helmet());
