@@ -1,5 +1,7 @@
 import * as dotenv from "dotenv";
+// import { graphqlKoa } from "graphql-server-koa";
 import * as Koa from "koa";
+import * as bodyparser from "koa-bodyparser";
 import * as helmet from "koa-helmet";
 import * as Router from "koa-router";
 
@@ -9,12 +11,16 @@ dotenv.config();
 
 import { Categories } from "./categories/categories";
 
+app.use(helmet());
+app.use(bodyparser());
+
 router.get("/", async (ctx) => {
   const categories = new Categories();
   ctx.body = await categories.getAllCategories();
 });
 
-app.use(helmet());
+// router.post("/graphql", graphqlKoa({ schema: MySchema }))
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 
