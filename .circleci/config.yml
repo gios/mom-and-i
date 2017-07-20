@@ -43,6 +43,7 @@ jobs:
       - run:
           name: Commit compiled TS files
           command: |
+            git add --force dist
             git config user.name $GIT_NAME
             git config user.email $GIT_EMAIL
             git add -A
