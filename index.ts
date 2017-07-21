@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv";
-// import { graphqlKoa } from "graphql-server-koa";
+import { graphiqlKoa, graphqlKoa } from "graphql-server-koa";
+import { makeExecutableSchema } from "graphql-tools";
 import * as Koa from "koa";
 import * as bodyparser from "koa-bodyparser";
 import * as helmet from "koa-helmet";
@@ -9,17 +10,34 @@ const app = new Koa();
 const router = new Router();
 dotenv.config();
 
-import { Categories } from "./categories/categories";
-
 app.use(helmet());
 app.use(bodyparser());
 
+const typeDefs = [`
+type Query {
+  hello: String
+}
+
+schema {
+  query: Query
+}`];
+
+const resolvers = {
+  Query: {
+    hello() {
+      return "world";
+    },
+  },
+};
+
+const schema = makeExecutableSchema({typeDefs, resolvers});
+
 router.get("/", async (ctx) => {
-  const categories = new Categories();
-  ctx.body = await categories.getAllCategories();
+  ctx.body = "Mom and I";
 });
 
-// router.post("/graphql", graphqlKoa({ schema: MySchema }))
+router.post("/graphql", graphqlKoa({ schema }));
+router.get("/graphiql", graphiqlKoa({ endpointURL: "/graphql" }));
 
 app.use(router.routes());
 app.use(router.allowedMethods());
