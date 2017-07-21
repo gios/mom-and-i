@@ -6,6 +6,7 @@ import * as Koa from "koa";
 import * as bodyparser from "koa-bodyparser";
 import * as helmet from "koa-helmet";
 import * as Router from "koa-router";
+import * as winston from "winston";
 
 import { categoriesResolves, categoriesTypeDefs } from "./categories/categories.schema";
 
@@ -32,6 +33,5 @@ router.get("/graphiql", graphiqlKoa({ endpointURL: "/graphql" }));
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-// tslint:disable-next-line:no-console
-console.info(`Application is running on port ${process.env.PORT}`);
+winston.info(`Application is running on port ${process.env.PORT}`);
 app.listen(process.env.PORT);
