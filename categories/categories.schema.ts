@@ -1,4 +1,5 @@
 import { knexQuery } from "../configs/database";
+import { ICategories } from "./categories.model";
 
 export const categoriesTypeDefs = `
   type Categories {
@@ -23,7 +24,7 @@ export const categoriesTypeDefs = `
 
 export const categoriesResolves = {
   Categories: {
-    async subcategories(obj) {
+    async subcategories(obj: ICategories) {
       return await knexQuery.select("id", "name")
         .from("subcategories").where("category_id", obj.id);
     },
