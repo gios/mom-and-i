@@ -1,4 +1,5 @@
 import * as dotenv from "dotenv";
+dotenv.config();
 import { graphiqlKoa, graphqlKoa } from "graphql-server-koa";
 import { makeExecutableSchema } from "graphql-tools";
 import * as Koa from "koa";
@@ -6,31 +7,20 @@ import * as bodyparser from "koa-bodyparser";
 import * as helmet from "koa-helmet";
 import * as Router from "koa-router";
 
+import { categoriesResolves, categoriesTypeDefs } from "./categories/categories.schema";
+
 const app = new Koa();
 const router = new Router();
-dotenv.config();
 
 app.use(helmet());
 app.use(bodyparser());
 
-const typeDefs = [`
-type Query {
-  hello: String
-}
-
-schema {
-  query: Query
-}`];
-
-const resolvers = {
-  Query: {
-    hello() {
-      return "world";
-    },
-  },
-};
-
-const schema = makeExecutableSchema({typeDefs, resolvers});
+const schema = makeExecutableSchema({
+  resolvers: Object.assign(categoriesResolves),
+  typeDefs: [
+    categoriesTypeDefs,
+  ],
+});
 
 router.get("/", async (ctx) => {
   ctx.body = "Mom and I";
